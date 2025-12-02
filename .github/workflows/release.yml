@@ -35,7 +35,8 @@ jobs:
 
       - name: Create info.xml with version
         run: |
-          sed -i "s/<version>.*<\/version>/<version>${{ steps.version.outputs.VERSION }}<\/version>/" appinfo/info.xml
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          perl -i -pe "s|<version>.*?</version>|<version>${VERSION}</version>|" appinfo/info.xml
 
       - name: Create release archive
         run: |
