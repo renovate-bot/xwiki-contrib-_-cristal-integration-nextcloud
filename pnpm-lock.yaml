@@ -60,8 +60,8 @@ importers:
         specifier: 0.24.0
         version: 0.24.0(inversify@7.10.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)(vue-router@4.6.3(vue@3.5.25(typescript@5.8.2)))(vue@3.5.25(typescript@5.8.2))
       fast-xml-parser:
-        specifier: 5.3.1
-        version: 5.3.1
+        specifier: 5.3.3
+        version: 5.3.3
       inversify:
         specifier: 7.10.4
         version: 7.10.4(reflect-metadata@0.2.2)
@@ -1339,6 +1339,7 @@ packages:
 
   '@xwiki/cristal-api@0.24.0':
     resolution: {integrity: sha512-5WOXwTsbtDny7KLcMarvN+Nfzyxoi1xKfCmPYdm0fSs74iTPQ5JGfJGuv+lCZzdpdSz+Kc+JIvgBnk+2BSmZow==}
+    deprecated: replaced by @xwiki/platform-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1347,12 +1348,14 @@ packages:
 
   '@xwiki/cristal-attachments-api@0.24.0':
     resolution: {integrity: sha512-pan+sgutXg+88lHniJMvFU7AZnM8LQ8dfmzveap2OE5iOq8PTQ3lrtufp6j/2u+axnCqrEqi4Oq2/LmJqzdubg==}
+    deprecated: replaced by @xwiki/platform-attachments-api
     peerDependencies:
       reflect-metadata: 0.x
       vue: 3.x
 
   '@xwiki/cristal-attachments-default@0.24.0':
     resolution: {integrity: sha512-b6PxGpYoFBpKxVlPP4eOX9EipZsffqaq1LjmUeaS53nC9ARD7Ywe+PNU2u3PE+KlvDkXIUqvFGTqKhDG4iK98g==}
+    deprecated: replaced by @xwiki/platform-attachments-default
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1368,6 +1371,7 @@ packages:
 
   '@xwiki/cristal-authentication-api@0.24.0':
     resolution: {integrity: sha512-2NOg3F87WxbCj2T0FNAiuT9qcVohCuWLqfu25A5fITXJGv5PPnIfmQcwet7wi6M3tLX6/sPbyd/4RwPvcVkOEg==}
+    deprecated: replaced by @xwiki/platform-authentication-api
     peerDependencies:
       reflect-metadata: 0.x
 
@@ -1414,6 +1418,7 @@ packages:
 
   '@xwiki/cristal-backend-api@0.24.0':
     resolution: {integrity: sha512-pvUNdbGPsHBgb6qrTm9Azm5D3vlxkFjJ7LZ59HdPbaqGf0oMkK80/ZAVe4Gfip62BHeC6sKVEWWZyJa2bcNrfg==}
+    deprecated: replaced by @xwiki/platform-backend-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1454,6 +1459,7 @@ packages:
 
   '@xwiki/cristal-collaboration-api@0.24.0':
     resolution: {integrity: sha512-nDHpSDUNBM0fNbk8QZbQ28I8FrW6V+JPg4qBuHxNWhOAucBRxmOTJHR74suI67m12WSKyiUPkEawGDY/qNjHVA==}
+    deprecated: replaced by @xwiki/platform-collaboration-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1468,6 +1474,7 @@ packages:
 
   '@xwiki/cristal-configuration-api@0.24.0':
     resolution: {integrity: sha512-kfPEup0x+PfvLtgYmPjdMyCiCEMu0arHaTYEknJvbYIutM6tEF69xE6mfWKuCFYDmaI2VhBwEW6A5iLP/G0X0g==}
+    deprecated: replaced by @xwiki/platform-configuration-api
 
   '@xwiki/cristal-configuration-web@0.24.0':
     resolution: {integrity: sha512-opMgFn0ftNq9lRuwuhEl8lKZTTaXAHADsH1muFaaYARcipKnC+PmWBho64CeXUmds9oY5+2EceA4jHorntqgWA==}
@@ -1486,6 +1493,7 @@ packages:
 
   '@xwiki/cristal-document-api@0.24.0':
     resolution: {integrity: sha512-ELTrZJlfSDbohrB37PHzEpWcOSspeZ9B1wOl3Gtt4F1Lgtlvl9PX5yg6pJMlESP+JTrdQ4V7x8JmzZBzw8mA1w==}
+    deprecated: replaced by @xwiki/platform-document-api
     peerDependencies:
       reflect-metadata: 0.x
       vue: 3.x
@@ -1499,6 +1507,7 @@ packages:
 
   '@xwiki/cristal-dsapi@0.24.0':
     resolution: {integrity: sha512-7oeNDOrt+6XJdEIoJ1IkJJvxlMPKQRAtiTbRdHzasncn0sOw27jHkShfcccHKtmywoLADyPW7c7mGqlDwZiU3w==}
+    deprecated: replaced by @xwiki/platform-dsapi
     peerDependencies:
       reflect-metadata: 0.x
       vue: 3.x
@@ -1519,6 +1528,7 @@ packages:
 
   '@xwiki/cristal-editors-blocknote-headless@0.24.0':
     resolution: {integrity: sha512-mTulqH18oqNcSeyNpOYquEH+awILpGZ4BpSRk0+V4TkoONUzPW/Wu4si1YWHRJR/fbqmcrvwcgoZOzmTnaOKfA==}
+    deprecated: replaced by @xwiki/platform-editors-blocknote-headless
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1574,6 +1584,7 @@ packages:
 
   '@xwiki/cristal-fn-utils@0.24.0':
     resolution: {integrity: sha512-EuUSqBLealJgpmEe9YsNhi+SRl/sKsAm8T5ZHo1qFPeAPIuuvmNx8MVU2p3/bM0QCazJNC6TtCEBTpvok5M4iQ==}
+    deprecated: replaced by @xwiki/platform-fn-utils
 
   '@xwiki/cristal-hierarchy-api@0.24.0':
     resolution: {integrity: sha512-U1TdtD7cQqZQ/ayzBKpWVPVIYe+ml3Vgd5Yf6OWnD/ObOGoYcnJ9y4XCji77/k03lNnFnPkuc5RwZALe6SQYaA==}
@@ -1633,6 +1644,7 @@ packages:
 
   '@xwiki/cristal-icons@0.24.0':
     resolution: {integrity: sha512-ilKBA7YdP+i1abr0Iv3Ji0AGd/Xud5/jPYtLY6Ig9C9ftdNP69I872bA1fH8Cmy5sUBsjjGOukx71ILK+3CXPw==}
+    deprecated: replaced by @xwiki/platform-icons
     peerDependencies:
       reflect-metadata: 0.x
       vue: 3.x
@@ -1666,6 +1678,7 @@ packages:
 
   '@xwiki/cristal-link-suggest-api@0.24.0':
     resolution: {integrity: sha512-MWEtgcL4etiK9uMJsOvKBcuSB2TTi5ezoknRn9GbsO39QXqBNnWxybb3B/J9aBVI2ywM0JEfP4+5YIACSIv7DA==}
+    deprecated: replaced by @xwiki/platform-link-suggest-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1684,6 +1697,7 @@ packages:
 
   '@xwiki/cristal-macros-api@0.24.0':
     resolution: {integrity: sha512-lsCMNzFvQfvRCFht6BzAPJjGRVOV4AVw+SmBsWGMmdoA5srU9v8ljKyO7n2qIWxfqzv2PxZlV3VuwPx2lD5MuQ==}
+    deprecated: replaced by @xwiki/platform-macros-api
 
   '@xwiki/cristal-macros-ast-html-converter@0.24.0':
     resolution: {integrity: sha512-s483wzUe9ImoBIwjLd0qi++6O3SDxWKsMkfCAu2FuLYuQGdev/qkV6Vm9ROgtTS3BhdoI+NkeVynAznusnvjkQ==}
@@ -1697,6 +1711,7 @@ packages:
 
   '@xwiki/cristal-macros-service@0.24.0':
     resolution: {integrity: sha512-U03etnpcV7SQ1jy+PDEHm4o4rPkexQP9Yr+Ekw03qmTS15U3hS5csMRVoT/SS5pZuOa0yZNJrejSsBE9XlVXEA==}
+    deprecated: replaced by @xwiki/platform-macros-service
     peerDependencies:
       inversify: 7.x
 
@@ -1707,6 +1722,7 @@ packages:
 
   '@xwiki/cristal-model-api@0.24.0':
     resolution: {integrity: sha512-xIODjfuvwXKLrnQ/GyuoWzhBF0VAKxBT7eB3B8rraxsJ4+v3wfgCqPl0M0LOjCRRqBt+J0r6XuZEfF8M1JtJ9w==}
+    deprecated: replaced by @xwiki/platform-model-api
 
   '@xwiki/cristal-model-click-listener@0.24.0':
     resolution: {integrity: sha512-E5oeIfvNhucxeKuEpsdt/e5QxnCTCa+FLsTtvtjhv973S70rWO0kLnupeqtB7ic7Z1OS1c1yfqT/0qTfYPvNvg==}
@@ -1716,6 +1732,7 @@ packages:
 
   '@xwiki/cristal-model-reference-api@0.24.0':
     resolution: {integrity: sha512-XyS7W/mOhoj4vzw2yvoQi2UuK8vxJAzWHjcBmfC0sIMfcwk6AEi9NFrAOsFyKgjUiAgCmqk2mCmjykWjgL/NWw==}
+    deprecated: replaced by @xwiki/platform-model-reference-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1740,6 +1757,7 @@ packages:
 
   '@xwiki/cristal-model-remote-url-api@0.24.0':
     resolution: {integrity: sha512-QTZTh9cNIfxzLZc05WqZZrifahACa0dJur1PamyxEofRHSXCydbfvBcZQbakGrgjqzP0whYwknfc7vEUV7v6kw==}
+    deprecated: replaced by @xwiki/platform-model-remote-url-api
     peerDependencies:
       inversify: 7.x
       reflect-metadata: 0.x
@@ -1764,6 +1782,7 @@ packages:
 
   '@xwiki/cristal-navigation-tree-api@0.24.0':
     resolution: {integrity: sha512-LcWrPznuUkPS7VnbRfHjjlkPKuvc6vU9qxi2BLN0bG0ckZh9fV4umBXhttoyoO1VfjnQ1tllKVzw6gvAeay34Q==}
+    deprecated: replaced by @xwiki/platform-navigation-tree-api
 
   '@xwiki/cristal-navigation-tree-default@0.24.0':
     resolution: {integrity: sha512-YxCgmmbYLAy1z25j160fKED8JxXQsrscYUvUAzuxBhjc2oZuQSpF4qrMj9ir1+fk1A9LNSfjog0eL9OOwzabhg==}
@@ -1894,6 +1913,7 @@ packages:
 
   '@xwiki/cristal-uniast-api@0.24.0':
     resolution: {integrity: sha512-aXMH4Fd8HwGqTHVGNqnKyCMDsA6DXysHOVwXsytVFs2aCeCJ0TMcvxHW2gDC3PZ8Qbw8mf51ZoazboLg0etavg==}
+    deprecated: replaced by @xwiki/platform-uniast-api
 
   '@xwiki/cristal-uniast-html@0.24.0':
     resolution: {integrity: sha512-CgDwIrmrmBUzkRGfX0gBTOqgC91ZVVHPTIREhr7s9KoDnYKhm5KIAENZPYGExnrcN4xaHYCvOMhI3gulDwWPRQ==}
@@ -1902,6 +1922,7 @@ packages:
 
   '@xwiki/cristal-uniast-markdown@0.24.0':
     resolution: {integrity: sha512-Mg+N/aUSRZAZ5mM/WsoXuoZo1IPjVLHEnGVCBZ5sCHILha4AcMjcTaQGB6oJXX5vJUaHWv0MbQnsMcWaBESbwA==}
+    deprecated: replaced by @xwiki/platform-uniast-markdown
     peerDependencies:
       inversify: 7.x
 
@@ -2675,6 +2696,10 @@ packages:
 
   fast-xml-parser@5.3.1:
     resolution: {integrity: sha512-jbNkWiv2Ec1A7wuuxk0br0d0aTMUtQ4IkL+l/i1r9PRf6pLXjDgsBsWwO+UyczmQlnehi4Tbc8/KIvxGQe+I/A==}
+    hasBin: true
+
+  fast-xml-parser@5.3.3:
+    resolution: {integrity: sha512-2O3dkPAAC6JavuMm8+4+pgTk+5hoAs+CjZ+sWcQLkX9+/tHRuTkQh/Oaifr8qDmZ8iEHb771Ea6G8CdwkrgvYA==}
     hasBin: true
 
   fastest-levenshtein@1.0.16:
@@ -8270,6 +8295,10 @@ snapshots:
       strnum: 1.1.2
 
   fast-xml-parser@5.3.1:
+    dependencies:
+      strnum: 2.1.1
+
+  fast-xml-parser@5.3.3:
     dependencies:
       strnum: 2.1.1
 
