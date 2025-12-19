@@ -24,9 +24,15 @@ jobs:
         with:
           version: latest
 
-      - name: Get version from tag
+      - name: Get version from tag and identify if nightly
         id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          if [[ "${GITHUB_REF#refs/tags/}" == *"-rc"* ]]; then
+            echo "IS_NIGHTLY=true" >> $GITHUB_OUTPUT
+          else
+            echo "IS_NIGHTLY=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -82,4 +88,4 @@ jobs:
             -H "Authorization: Token ${{ secrets.NEXTCLOUD_API_TOKEN }}" \
             https://apps.nextcloud.com/api/v1/apps/releases \
             -H "Content-Type: application/json" \
-            -d "{\"download\":\"${DOWNLOAD_URL}\", \"signature\": \"${SIGNATURE}\", \"nightly\": true}"
+            -d "{\"download\":\"${DOWNLOAD_URL}\", \"signature\": \"${SIGNATURE}\", \"nightly\": ${{ steps.version.outputs.IS_NIGHTLY }}}"
