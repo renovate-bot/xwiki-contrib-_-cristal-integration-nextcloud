@@ -23,7 +23,6 @@ import "./vuetify.css";
 import { ComponentInit as NextcloudAuthenticationComponentInit } from "./components/NextcloudAuthenticationManager";
 import { ComponentInit as NextcloudRouterComponentInit } from "./components/NextcloudRouterFactory";
 import { ComponentInit as NextcloudNavigationTreeComponentInit } from "./components/NextcloudNavigationTreeSource";
-import { NextcloudStorage } from "./components/NextcloudStorage";
 import { ComponentInit as BrowserComponentInit } from "@xwiki/cristal-browser-default";
 import { ComponentInit as VuetifyDSComponentInit } from "@xwiki/cristal-dsvuetify";
 import { ComponentInit as BlocknoteEditorComponentInit } from "@xwiki/cristal-editors-blocknote";
@@ -33,6 +32,11 @@ import { ComponentInit as NextcloudLinkSuggestComponentInit } from "@xwiki/crist
 import { ComponentInit as ModelReferenceNextcloudComponentInit } from "@xwiki/cristal-model-reference-nextcloud";
 import { ComponentInit as ModelRemoteURLNextcloudComponentInit } from "@xwiki/cristal-model-remote-url-nextcloud";
 import { ComponentInit as BrowserSettingsComponentInit } from "@xwiki/cristal-settings-browser";
+import { ComponentInit as NextcloudHTTPHeadersComponentInit } from "@xwiki/cristal-nextcloud-http-headers"
+import {Container, Factory, Newable, ResolutionContext} from "inversify";
+import type {
+    InternalLinksSerializer
+} from "@xwiki/platform-uniast-markdown/dist/markdown/internal-links/serializer/internal-links-serializer-resolver";
 
 CristalAppLoader.init(
     [],
@@ -54,11 +58,6 @@ CristalAppLoader.init(
     async (container) => {
         await defaultComponentsList(container);
 
-        container
-          .rebindSync<Storage>("Storage")
-          .to(NextcloudStorage)
-          .whenNamed("Nextcloud");
-
         new BrowserComponentInit(container);
         new BrowserSettingsComponentInit(container)
         new VuetifyDSComponentInit(container);
@@ -70,6 +69,50 @@ CristalAppLoader.init(
         new ModelReferenceNextcloudComponentInit(container);
         new NextcloudRouterComponentInit(container);
         new BlocknoteEditorComponentInit(container);
+        new NextcloudHTTPHeadersComponentInit(container);
+
+        await patchNextcloudMarkdownInternalLinksResolution(container);
     },
     async () => { },
 )
+
+// TODO: remove when CRISTAL-779 is closed
+async function patchNextcloudMarkdownInternalLinksResolution(container: Container)
+{
+    // TODO: remove when CRISTAL-779 is closed
+    const name = "Nextcloud";
+    (await container
+        .rebind<Factory<Promise<InternalLinksSerializer>>>(
+            "Factory<InternalLinksSerializer>",
+        ))
+        .toFactory((context) => {
+            return async () => {
+                const component = (
+                    await import(
+                        "./components/NextcloudInternalLinks"
+                        )
+                ).NextcloudInternalLinkSerializer;
+                return bindAndLoad(container, name, component, context);
+            };
+        })
+        .whenNamed(name);
+}
+
+
+// TODO: remove when CRISTAL-779 is closed
+function bindAndLoad<T extends InternalLinksSerializer>(
+    container: Container,
+    name: string,
+    component: Newable<T>,
+    context: ResolutionContext,
+) {
+    if (!container.isBound("InternalLinksSerializer", { name: name })) {
+        container
+            .bind<InternalLinksSerializer>("InternalLinksSerializer")
+            .to(component)
+            .whenNamed(name);
+    }
+    return context.get<InternalLinksSerializer>("InternalLinksSerializer", {
+        name: name,
+    });
+}
