@@ -19,7 +19,7 @@
  */
 import { EntityType } from "@xwiki/platform-model-api";
 import { XMLParser } from "fast-xml-parser";
-import {inject, injectable, named} from "inversify";
+import { inject, injectable, named } from "inversify";
 import type { InternalLinksSerializer } from "@xwiki/platform-uniast-markdown/dist/markdown/internal-links/serializer/internal-links-serializer-resolver";
 import type { UniAstToMarkdownConverter } from "@xwiki/platform-uniast-markdown/dist/markdown/uni-ast-to-markdown-converter";
 import type { CristalApp } from "@xwiki/platform-api";
@@ -34,86 +34,84 @@ import type { HTTPHeadersProvider } from "@xwiki/cristal-nextcloud-http-headers"
  * @since 1.0.0
  */
 @injectable()
-export class NextcloudInternalLinkSerializer
-    implements InternalLinksSerializer
-{
-    constructor(
-        @inject("RemoteURLSerializerProvider")
-        private readonly remoteURLSerializerProvider: RemoteURLSerializerProvider,
-        @inject("CristalApp") private readonly cristalApp: CristalApp,
-        @inject("DocumentService")
-        private readonly documentService: DocumentService,
-        @inject("HTTPHeadersProvider")
-        @named("Nextcloud/Authenticated")
-        private readonly httpHeadersProvider: HTTPHeadersProvider
-    ) {}
+export class NextcloudInternalLinkSerializer implements InternalLinksSerializer {
+  constructor(
+    @inject("RemoteURLSerializerProvider")
+    private readonly remoteURLSerializerProvider: RemoteURLSerializerProvider,
+    @inject("CristalApp") private readonly cristalApp: CristalApp,
+    @inject("DocumentService")
+    private readonly documentService: DocumentService,
+    @inject("HTTPHeadersProvider")
+    @named("Nextcloud/Authenticated")
+    private readonly httpHeadersProvider: HTTPHeadersProvider,
+  ) {}
 
-    async serialize(
-        content: Link["content"],
-        target: Extract<LinkTarget, { type: "internal" }>,
-        uniAstToMarkdownConverter: UniAstToMarkdownConverter,
-    ): Promise<string> {
-        const label =
-            await uniAstToMarkdownConverter.convertInlineContents(content);
-        const urlFromReference = this.remoteURLSerializerProvider
-            .get()!
-            .serialize(target.parsedReference ?? undefined)!;
-        const response = await fetch(urlFromReference, {
-            method: "PROPFIND",
-            body: `<?xml version="1.0" encoding="UTF-8"?>
+  async serialize(
+    content: Link["content"],
+    target: Extract<LinkTarget, { type: "internal" }>,
+    uniAstToMarkdownConverter: UniAstToMarkdownConverter,
+  ): Promise<string> {
+    const label =
+      await uniAstToMarkdownConverter.convertInlineContents(content);
+    const urlFromReference = this.remoteURLSerializerProvider
+      .get()!
+      .serialize(target.parsedReference ?? undefined)!;
+    const response = await fetch(urlFromReference, {
+      method: "PROPFIND",
+      body: `<?xml version="1.0" encoding="UTF-8"?>
  <d:propfind xmlns:d="DAV:">
    <d:prop xmlns:oc="http://owncloud.org/ns">
     <oc:fileid/>
    </d:prop>
  </d:propfind>`,
-            headers: await this.httpHeadersProvider.getHeaders(),
-        });
-        const xml = new XMLParser().parse(await response.text());
-        const fileId =
-            xml["d:multistatus"]["d:response"]["d:propstat"]["d:prop"]["oc:fileid"];
-        const baseURL = this.cristalApp.getWikiConfig().baseURL;
-        const url = `${baseURL}/f/${fileId}`;
-        return `[${label}](${url})`;
-    }
+      headers: await this.httpHeadersProvider.getHeaders(),
+    });
+    const xml = new XMLParser().parse(await response.text());
+    const fileId =
+      xml["d:multistatus"]["d:response"]["d:propstat"]["d:prop"]["oc:fileid"];
+    const baseURL = this.cristalApp.getWikiConfig().baseURL;
+    const url = `${baseURL}/f/${fileId}`;
+    return `[${label}](${url})`;
+  }
 
-    // eslint-disable-next-line max-statements
-    async serializeImage(
-        target: Extract<LinkTarget, { type: "internal" }>,
-        alt?: string,
-    ): Promise<string> {
-        let ref: string;
-        if (target.parsedReference) {
-            const currentDocumentReference =
-                this.documentService.getCurrentDocumentReference().value!;
-            if (target.parsedReference.type == EntityType.ATTACHMENT) {
-                const parsedReference = target.parsedReference;
-                const imageDocumentReference = parsedReference.document;
-                if (currentDocumentReference === imageDocumentReference) {
-                    ref = `.${imageDocumentReference.name}/attachments/${parsedReference.name}`;
-                } else {
-                    const down = [
-                        ...(currentDocumentReference.space &&
-                        currentDocumentReference.space.names.length > 0
-                            ? currentDocumentReference.space.names.map(() => "..")
-                            : ["."]),
-                    ].join("/");
-                    const up = [
-                        ...(parsedReference.document.space?.names ?? []),
-                        "." + parsedReference.document.name,
-                    ]
-                        .map(encodeURI)
-                        .join("/");
-                    ref = `${down}/${up}/attachments/${encodeURI(parsedReference.name)}`;
-                }
-            } else {
-                throw new Error(
-                    `Unexpected type ${target.parsedReference.type} for link serialization`,
-                );
-            }
+  // eslint-disable-next-line max-statements
+  async serializeImage(
+    target: Extract<LinkTarget, { type: "internal" }>,
+    alt?: string,
+  ): Promise<string> {
+    let ref: string;
+    if (target.parsedReference) {
+      const currentDocumentReference =
+        this.documentService.getCurrentDocumentReference().value!;
+      if (target.parsedReference.type == EntityType.ATTACHMENT) {
+        const parsedReference = target.parsedReference;
+        const imageDocumentReference = parsedReference.document;
+        if (currentDocumentReference === imageDocumentReference) {
+          ref = `.${imageDocumentReference.name}/attachments/${parsedReference.name}`;
         } else {
-            ref = target.rawReference;
+          const down = [
+            ...(currentDocumentReference.space &&
+            currentDocumentReference.space.names.length > 0
+              ? currentDocumentReference.space.names.map(() => "..")
+              : ["."]),
+          ].join("/");
+          const up = [
+            ...(parsedReference.document.space?.names ?? []),
+            "." + parsedReference.document.name,
+          ]
+            .map(encodeURI)
+            .join("/");
+          ref = `${down}/${up}/attachments/${encodeURI(parsedReference.name)}`;
         }
-
-        return `![${alt ?? ""}](${ref})`;
+      } else {
+        throw new Error(
+          `Unexpected type ${target.parsedReference.type} for link serialization`,
+        );
+      }
+    } else {
+      ref = target.rawReference;
     }
+
+    return `![${alt ?? ""}](${ref})`;
+  }
 }

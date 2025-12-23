@@ -23,7 +23,7 @@ div#content {
   display: grid;
   /* TODO: replace with `var(--color-main-background)` once dark mode support
      is implemented (see CRISTALNC-13). */
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 /* This targets the "content" node used by Cristal. */

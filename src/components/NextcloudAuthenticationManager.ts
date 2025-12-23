@@ -36,7 +36,7 @@ class NextcloudAuthenticationManager implements AuthenticationManager {
 
   async start(): Promise<void> {
     const loginUrl = new URL(
-      `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`
+      `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`,
     );
     loginUrl.searchParams.set("redirect_url", window.location.href);
     window.location.href = loginUrl.toString();
@@ -49,7 +49,7 @@ class NextcloudAuthenticationManager implements AuthenticationManager {
   async getUserDetails(): Promise<UserDetails> {
     if (!this.userDetails) {
       const loginRequest = await fetch(
-        `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`
+        `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`,
       );
       const userId = loginRequest.headers.get("X-User-Id")!;
 
@@ -77,10 +77,9 @@ class NextcloudAuthenticationManager implements AuthenticationManager {
   }
 
   async logout(): Promise<void> {
-    await fetch(
-      `${this.cristalApp.getWikiConfig().baseURL}/index.php/logout`,
-      { headers: { "OCS-APIRequest": "true" } },
-    );
+    await fetch(`${this.cristalApp.getWikiConfig().baseURL}/index.php/logout`, {
+      headers: { "OCS-APIRequest": "true" },
+    });
   }
 
   async getAuthorizationHeader(): Promise<string | undefined> {
@@ -106,5 +105,3 @@ export class ComponentInit {
       .whenNamed("Nextcloud");
   }
 }
-
-
