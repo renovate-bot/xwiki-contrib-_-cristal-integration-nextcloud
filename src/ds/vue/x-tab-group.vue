@@ -42,6 +42,10 @@ function change(event: string) {
   --app-sidebar-width: auto;
 }
 
+/* The component we use here is originally expected to be used as a sidebar.
+   It still serves our purpose, but considering we want to use it anywhere
+   we need to make some changes, e.g., hiding the header that includes a
+   button to close the sidebar. */
 :deep(.app-sidebar-header) {
   display: none;
 }

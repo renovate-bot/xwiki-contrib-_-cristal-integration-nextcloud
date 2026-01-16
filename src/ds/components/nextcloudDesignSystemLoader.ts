@@ -87,7 +87,6 @@ export class NextcloudDesignSystemLoader implements DesignSystemLoader {
       "XBreadcrumb",
       () => import("../vue/x-breadcrumb.vue"),
     );
-    registerAsyncComponent(app, "XTab", () => import("../vue/x-tab.vue"));
     registerAsyncComponent(
       app,
       "XTabGroup",
@@ -115,24 +114,20 @@ export class NextcloudDesignSystemLoader implements DesignSystemLoader {
     );
     registerAsyncComponent(
       app,
-      "XNavigationTree",
-      () => import("../vue/x-navigation-tree.vue"),
-    );
-    registerAsyncComponent(
-      app,
       "XCheckbox",
       () => import("../vue/form/x-checkbox.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XNavigationTreeSelect",
-      () => import("../vue/form/x-navigation-tree-select.vue"),
     );
     registerAsyncComponent(
       app,
       "XSelect",
       () => import("../vue/form/x-select.vue"),
     );
-    registerAsyncComponent(app, "XTree", () => import("../vue/x-tree.vue"));
+
+    // Vuetify fallbacks
+    registerAsyncComponent(
+      app,
+      "XTree",
+      () => import("../vue/vuetify/x-tree.vue"),
+    );
   }
 }

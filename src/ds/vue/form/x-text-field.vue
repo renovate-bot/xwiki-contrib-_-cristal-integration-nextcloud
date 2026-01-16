@@ -35,10 +35,19 @@ const input = defineModel<string>();
     :required="required"
     :type="type ?? 'text'"
   >
-    <template #default>
+    <template v-if="$slots.default" #icon>
       <slot name="default" />
     </template>
   </nc-text-field>
 </template>
 
-<style scoped></style>
+<style scoped>
+.input-field--leading-icon {
+  --input-padding-start: var(--border-radius-element);
+}
+
+:deep(.input-field__icon) {
+  width: unset;
+}
+
+</style>
