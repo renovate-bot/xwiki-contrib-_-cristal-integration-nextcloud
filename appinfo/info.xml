@@ -3,7 +3,7 @@
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>cristal</id>
 	<name>Cristal</name>
-	<summary>Integration of Cristal in Nextcloud</summary>
+	<summary>A Wiki UI for Nextcloud</summary>
 	<description><![CDATA[The [Cristal integration](https://github.com/xwiki-contrib/cristal-integration-nextcloud) for Nextcloud adds a modern, wiki-style note-taking interface on top of your Nextcloud files.
 
 Cristal is designed for flexibility, a user-friendly UI, and organized knowledge, without lock-in or unnecessary complexity.
@@ -12,13 +12,13 @@ Cristal is designed for flexibility, a user-friendly UI, and organized knowledge
 
 With the Cristal integration in Nextcloud you can:
 
-* Write notes and organize your thoughts in pages.
-* Structure pages into a hierarchy (as many levels as you want).
-* Link pages together.
-* Manage attachments from Nextcloud in Cristal.
-* Navigate with the navigation tree.
-* Use auto-suggestion to find content.
-* Keep your wiki content in Markdown files.
+* **Write notes and organize your thoughts** in pages.
+* **Structure pages into a hierarchy** (as many levels as you want).
+* **Link pages** together.
+* **Manage your attachments**.
+* **Navigate** with the navigation tree.
+* **Use auto-suggestion** to find content.
+* **Keep your wiki content in Markdown files**.
 
 If you uninstall Cristal, all your data, pages and attachments, remain accessible in Nextcloud.
 
@@ -30,7 +30,7 @@ Admins logged into the Nextcloud App Store can install Cristal in one click from
 
 Cristal is open source and any contributions are welcome!
 
-You can help improve the application, leave feedback in the comments, or use the "Request feature" and "Report problem" buttons.
+You can help improve the application, leave feedback in the comments, report [issues](https://jira.xwiki.org/projects/CRISTALNC/), or [discuss with us](https://dev.xwiki.org/xwiki/bin/view/Community/Chat).
 
 ## What is Cristal?
 
