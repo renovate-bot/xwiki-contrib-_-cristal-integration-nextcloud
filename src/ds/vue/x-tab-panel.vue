@@ -19,14 +19,17 @@
 -->
 <script setup lang="ts">
 import NcAppSidebarTab from "@nextcloud/vue/components/NcAppSidebarTab";
+import { useId } from "vue";
 import type { TabPanelProps } from "@xwiki/platform-dsapi";
 
 defineProps<TabPanelProps>();
+
+const tabUid = useId();
 </script>
 
 <template>
   <nc-app-sidebar-tab
-    :id="tabId"
+    :id="tabUid"
     :name="tabId.charAt(0).toUpperCase() + tabId.slice(1)"
     :value="tabId"
   >
