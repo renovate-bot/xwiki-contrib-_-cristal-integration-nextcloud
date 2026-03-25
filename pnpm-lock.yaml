@@ -96,8 +96,8 @@ importers:
         specifier: 4.6.4
         version: 4.6.4(vue@3.5.31(typescript@5.8.2))
       vuetify:
-        specifier: 3.11.8
-        version: 3.11.8(typescript@5.8.2)(vue@3.5.31(typescript@5.8.2))
+        specifier: 3.12.4
+        version: 3.12.4(typescript@5.8.2)(vue@3.5.31(typescript@5.8.2))
     devDependencies:
       '@nextcloud/browserslist-config':
         specifier: 3.1.2
@@ -4654,6 +4654,21 @@ packages:
 
   vuetify@3.11.8:
     resolution: {integrity: sha512-4iKnntOnLFFklygZjzlVfcHrtLO8+iK4HOhiia6HP2U8v82x+ngaSCgm+epvPrGyCMfCpfuEttqD2qElrr1axw==}
+    peerDependencies:
+      typescript: '>=4.7'
+      vite-plugin-vuetify: '>=2.1.0'
+      vue: ^3.5.0
+      webpack-plugin-vuetify: '>=3.1.0'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vite-plugin-vuetify:
+        optional: true
+      webpack-plugin-vuetify:
+        optional: true
+
+  vuetify@3.12.4:
+    resolution: {integrity: sha512-9pyvSdL4vGEioOSJKjoyRxyPc2HYYINWkwxE4ku8PuGGRhCoEchXL57EL1JabIy+D8lUsx+co/G+tUaksvpXrw==}
     peerDependencies:
       typescript: '>=4.7'
       vite-plugin-vuetify: '>=2.1.0'
@@ -10684,6 +10699,12 @@ snapshots:
       typescript: 5.8.2
 
   vuetify@3.11.8(typescript@5.8.2)(vue@3.5.31(typescript@5.8.2)):
+    dependencies:
+      vue: 3.5.31(typescript@5.8.2)
+    optionalDependencies:
+      typescript: 5.8.2
+
+  vuetify@3.12.4(typescript@5.8.2)(vue@3.5.31(typescript@5.8.2)):
     dependencies:
       vue: 3.5.31(typescript@5.8.2)
     optionalDependencies:
