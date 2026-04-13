@@ -109,8 +109,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(stylelint-config-recommended-scss@15.0.1(postcss@8.5.8)(stylelint@16.26.0(typescript@5.8.2)))(stylelint-config-recommended-vue@1.6.1(postcss-html@1.8.0)(stylelint@16.26.0(typescript@5.8.2)))(stylelint@16.26.0(typescript@5.8.2))
       '@vitejs/plugin-vue':
-        specifier: 6.0.4
-        version: 6.0.4(vite@7.3.1(sass@1.94.2)(yaml@2.8.3))(vue@3.5.31(typescript@5.8.2))
+        specifier: 6.0.6
+        version: 6.0.6(vite@7.3.1(sass@1.94.2)(yaml@2.8.3))(vue@3.5.31(typescript@5.8.2))
       vite:
         specifier: 7.3.1
         version: 7.3.1(sass@1.94.2)(yaml@2.8.3)
@@ -834,8 +834,8 @@ packages:
   '@remirror/core-constants@3.0.0':
     resolution: {integrity: sha512-42aWfPrimMfDKDi4YegyS7x+/0tlzaqwPQCULLanv3DMIlu96KTJR0fM5isWX2UViOqlGnX6YFgqWepcX+XMNg==}
 
-  '@rolldown/pluginutils@1.0.0-rc.2':
-    resolution: {integrity: sha512-izyXV/v+cHiRfozX62W9htOAvwMo4/bXKDrQ+vom1L1qRuexPock/7VZDAhnpHCLNejd3NJ6hiab+tO0D44Rgw==}
+  '@rolldown/pluginutils@1.0.0-rc.13':
+    resolution: {integrity: sha512-3ngTAv6F/Py35BsYbeeLeecvhMKdsKm4AoOETVhAA+Qc8nrA2I0kF7oa93mE9qnIurngOSpMnQ0x2nQY2FPviA==}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     resolution: {integrity: sha512-mRSi+4cBjrRLoaal2PnqH82Wqyb+d3HsPUN/W+WslCXsZsyHa9ZeQQX/pQsZaVIWDkPcpV6jJ+3KLbTbgnwv8w==}
@@ -1308,11 +1308,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vitejs/plugin-vue@6.0.4':
-    resolution: {integrity: sha512-uM5iXipgYIn13UUQCZNdWkYk+sysBeA97d5mHsAoAt1u/wpN3+zxOmsVJWosuzX+IMGRzeYUNytztrYznboIkQ==}
+  '@vitejs/plugin-vue@6.0.6':
+    resolution: {integrity: sha512-u9HHgfrq3AjXlysn0eINFnWQOJQLO9WN6VprZ8FXl7A2bYisv3Hui9Ij+7QZ41F/WYWarHjwBbXtD7dKg3uxbg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
       vue: ^3.2.25
 
   '@vue-macros/common@3.1.2':
@@ -5604,7 +5604,7 @@ snapshots:
 
   '@remirror/core-constants@3.0.0': {}
 
-  '@rolldown/pluginutils@1.0.0-rc.2': {}
+  '@rolldown/pluginutils@1.0.0-rc.13': {}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     optional: true
@@ -6018,9 +6018,9 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vitejs/plugin-vue@6.0.4(vite@7.3.1(sass@1.94.2)(yaml@2.8.3))(vue@3.5.31(typescript@5.8.2))':
+  '@vitejs/plugin-vue@6.0.6(vite@7.3.1(sass@1.94.2)(yaml@2.8.3))(vue@3.5.31(typescript@5.8.2))':
     dependencies:
-      '@rolldown/pluginutils': 1.0.0-rc.2
+      '@rolldown/pluginutils': 1.0.0-rc.13
       vite: 7.3.1(sass@1.94.2)(yaml@2.8.3)
       vue: 3.5.31(typescript@5.8.2)
 
