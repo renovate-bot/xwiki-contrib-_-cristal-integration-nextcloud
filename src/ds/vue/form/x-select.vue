@@ -18,32 +18,34 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcSelect from "@nextcloud/vue/components/NcSelect";
-import { ref, watch } from "vue";
-import type { SelectProps } from "@xwiki/platform-dsapi";
-import type { Ref } from "vue";
+import type { SelectProps } from '@xwiki/platform-dsapi'
+import type { Ref } from 'vue'
 
-defineProps<SelectProps>();
-const selected = defineModel<string>();
+import { ref, watch } from 'vue'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
 
-const localSelected: Ref<string | null> = ref(null);
+const selected = defineModel<string>()
+defineProps<SelectProps>()
+const localSelected: Ref<string | null> = ref(null)
 
 watch(selected, (newValue) => {
-  localSelected.value = newValue != "" ? newValue : null;
-}, { immediate: true });
+	localSelected.value = newValue !== '' ? newValue : null
+}, { immediate: true })
 </script>
+
 <template>
-  <div>
-    <nc-select
-      v-model="localSelected"
-      :input-label="label"
-      :options="items"
-      :required="required"
-      :class="{ notClearable: required }"
-      @update:model-value="selected = localSelected ? localSelected : ''"
-    ></nc-select>
-    <p class="help-text">{{ help }}</p>
-  </div>
+	<div>
+		<NcSelect
+			v-model="localSelected"
+			:inputLabel="label"
+			:options="items"
+			:required="required"
+			:class="{ notClearable: required }"
+			@update:modelValue="selected = localSelected ? localSelected : ''" />
+		<p class="help-text">
+			{{ help }}
+		</p>
+	</div>
 </template>
 
 <style scoped>

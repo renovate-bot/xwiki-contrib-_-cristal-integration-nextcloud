@@ -23,5 +23,3 @@ import './css/style.css'
 </script>
 
 <template><span /></template>
-
-<style scoped></style>

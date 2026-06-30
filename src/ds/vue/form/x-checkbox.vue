@@ -18,15 +18,18 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcCheckboxRadioSwitch from "@nextcloud/vue/components/NcCheckboxRadioSwitch";
-import type { CheckboxProps } from "@xwiki/platform-dsapi";
+import type { CheckboxProps } from '@xwiki/platform-dsapi'
 
-defineProps<CheckboxProps>();
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
-const checked = defineModel<boolean | null>();
+const checked = defineModel<boolean | null>()
+
+defineProps<CheckboxProps>()
+
 </script>
+
 <template>
-  <nc-checkbox-radio-switch v-model="checked" :description="help">
-    {{ label }}
-  </nc-checkbox-radio-switch>
+	<NcCheckboxRadioSwitch v-model="checked" :description="help">
+		{{ label }}
+	</NcCheckboxRadioSwitch>
 </template>

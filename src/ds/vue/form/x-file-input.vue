@@ -18,50 +18,54 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import messages from "../../translations";
-import { CIcon } from "@xwiki/platform-icons";
-import { defineModel, ref, useId } from "vue";
-import { useI18n } from "vue-i18n";
-import type { FileInputModel, TextFieldProps } from "@xwiki/platform-dsapi";
-import type { Ref } from "vue";
+import type { FileInputModel, TextFieldProps } from '@xwiki/platform-dsapi'
+import type { Ref } from 'vue'
 
-defineProps<TextFieldProps>();
-const model = defineModel<FileInputModel>();
+import { CIcon } from '@xwiki/platform-icons'
+import { defineModel, ref, useId } from 'vue'
+import { useI18n } from 'vue-i18n'
+import XTextField from './x-text-field.vue'
+import messages from '../../translations.ts'
 
-const inputId = useId();
-const fileName: Ref<string> = ref("");
+const model = defineModel<FileInputModel>()
+defineProps<TextFieldProps>()
+const inputId = useId()
+const fileName: Ref<string> = ref('')
 
 const { t } = useI18n({
-  messages,
-});
+	messages,
+})
 
 function change(event: Event) {
-  const files = (event.target as HTMLInputElement).files;
-  if (!files || files.length == 0) {
-    model.value = undefined;
-  } else if (files.length == 1) {
-    model.value = files[0];
-  } else {
-    const value = [];
-    for (let i = 0; i < files.length; i++) {
-      value.push(files[i]);
-    }
-    model.value = value;
-  }
-  fileName.value = Array.from(files ?? []).map((f: File) => f.name).join(", ");
+	const files = (event.target as HTMLInputElement).files
+	if (!files || files.length === 0) {
+		model.value = undefined
+	} else if (files.length === 1) {
+		model.value = files[0]
+	} else {
+		const value = []
+		for (let i = 0; i < files.length; i++) {
+			value.push(files[i])
+		}
+		model.value = value
+	}
+	fileName.value = Array.from(files ?? []).map((f: File) => f.name).join(', ')
 }
 </script>
 
 <template>
-  <label :for="inputId">
-    <c-icon slot="icon" name="paperclip"></c-icon>
-    <x-text-field
-      v-model="fileName"
-      :placeholder="t('nextcloud.file.input.none')"
-      readonly
-    ></x-text-field>
-  </label>
-  <input :id="inputId" type="file" @change="change($event)" multiple />
+	<label :for="inputId">
+		<XTextField
+			v-model="fileName"
+			:placeholder="t('nextcloud.file.input.none')"
+			readonly>
+			<template #icon><CIcon name="paperclip" /></template>
+		</XTextField>
+	</label>
+	<input :id="inputId"
+		type="file"
+		multiple
+		@change="change($event)">
 </template>
 
 <style scoped>

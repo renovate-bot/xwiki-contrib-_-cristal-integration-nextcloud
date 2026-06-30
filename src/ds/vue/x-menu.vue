@@ -23,9 +23,9 @@ import NcPopover from '@nextcloud/vue/components/NcPopover'
 
 <template>
 	<NcPopover
-		popup-role="menu"
+		popupRole="menu"
 		container="#xwCristalApp"
-		no-focus-trap>
+		noFocusTrap>
 		<template #trigger>
 			<slot name="activator" />
 		</template>

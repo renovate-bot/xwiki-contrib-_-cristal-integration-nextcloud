@@ -18,53 +18,54 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import NcButton from "@nextcloud/vue/components/NcButton";
-import NcNoteCard from "@nextcloud/vue/components/NcNoteCard";
-import { CIcon } from "@xwiki/platform-icons";
-import { ref } from "vue";
-import type { AlertProps } from "@xwiki/platform-dsapi";
-import type { Ref } from "vue";
+import type { AlertProps } from '@xwiki/platform-dsapi'
+import type { Ref } from 'vue'
 
-defineProps<AlertProps>();
+import { CIcon } from '@xwiki/platform-icons'
+import { ref } from 'vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import XBtn from './x-btn.vue'
 
-const opened: Ref<boolean> = ref(true);
+defineProps<AlertProps>()
+
+const opened: Ref<boolean> = ref(true)
 </script>
+
 <template>
-  <nc-note-card
-    v-if="opened"
-    :heading="title"
-    :type="type"
-    :class="{ 'flat-corners': flatCorners }"
-  >
-    <template #default>
-      <div class="alert-content-wrapper">
-        <div class="alert-content">
-          {{ description }}
-          <x-btn
-            v-for="action of actions"
-            :key="action.name"
-            size="small"
-            variant="text"
-            @click="action.callback"
-            >{{ action.name }}</x-btn
-          >
-          <br v-if="details" />
-          <small v-if="details">{{ details }}</small>
-          <slot />
-        </div>
-        <nc-button
-          v-if="closable"
-          variant="tertiary"
-          class="alert-close-button"
-          @click="opened = false"
-        >
-          <template #icon>
-            <c-icon name="x"></c-icon>
-          </template>
-        </nc-button>
-      </div>
-    </template>
-  </nc-note-card>
+	<NcNoteCard
+		v-if="opened"
+		:heading="title"
+		:type="type"
+		:class="{ 'flat-corners': flatCorners }">
+		<template #default>
+			<div class="alert-content-wrapper">
+				<div class="alert-content">
+					{{ description }}
+					<XBtn
+						v-for="action of actions"
+						:key="action.name"
+						size="small"
+						variant="text"
+						@click="action.callback">
+						{{ action.name }}
+					</XBtn>
+					<br v-if="details">
+					<small v-if="details">{{ details }}</small>
+					<slot />
+				</div>
+				<NcButton
+					v-if="closable"
+					variant="tertiary"
+					class="alert-close-button"
+					@click="opened = false">
+					<template #icon>
+						<CIcon name="x" />
+					</template>
+				</NcButton>
+			</div>
+		</template>
+	</NcNoteCard>
 </template>
 
 <style scoped>

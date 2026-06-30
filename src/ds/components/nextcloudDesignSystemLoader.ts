@@ -18,116 +18,116 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-import { registerAsyncComponent } from "@xwiki/platform-api";
-import { injectable } from "inversify";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
+import type { DesignSystemLoader } from '@xwiki/platform-api'
+import type { App } from 'vue'
 
-import * as directives from "vuetify/directives";
-import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
-import { blue, blueGrey } from "vuetify/util/colors";
-import type { DesignSystemLoader } from "@xwiki/platform-api";
-import type { App } from "vue";
+import { registerAsyncComponent } from '@xwiki/platform-api'
+import { injectable } from 'inversify'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
+import { blue, blueGrey } from 'vuetify/util/colors'
 
 @injectable()
 export class NextcloudDesignSystemLoader implements DesignSystemLoader {
-  // TODO: reduce the number of statements in the following method and reactivate the disabled eslint rule.
-  // eslint-disable-next-line max-statements
-  loadDesignSystem(app: App): void {
-    const vuetify = createVuetify({
-      components,
-      directives,
-      icons: {
-        defaultSet: "mdi",
-        aliases,
-        sets: {
-          mdi,
-        },
-      },
-      theme: {
-        themes: {
-          light: {
-            dark: false,
-            colors: {
-              background: "#FFFFFF",
-              primary: blue.darken4,
-              secondary: blueGrey.darken4,
-            },
-          },
-        },
-      },
-    });
-    app.use(vuetify);
+	// TODO: reduce the number of statements in the following method and reactivate the disabled eslint rule.
 
-    // Custom wrapped components
-    registerAsyncComponent(app, "XLoad", () => import("../vue/x-load.vue"));
-    registerAsyncComponent(app, "XBtn", () => import("../vue/x-btn.vue"));
-    registerAsyncComponent(app, "XImg", () => import("../vue/x-img.vue"));
-    registerAsyncComponent(app, "XAvatar", () => import("../vue/x-avatar.vue"));
-    registerAsyncComponent(
-      app,
-      "XDivider",
-      () => import("../vue/x-divider.vue"),
-    );
-    registerAsyncComponent(app, "XAlert", () => import("../vue/x-alert.vue"));
-    registerAsyncComponent(app, "XDialog", () => import("../vue/x-dialog.vue"));
-    registerAsyncComponent(app, "XMenu", () => import("../vue/x-menu.vue"));
-    registerAsyncComponent(
-      app,
-      "XMenuItem",
-      () => import("../vue/x-menu-item.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XMenuLabel",
-      () => import("../vue/x-menu-label.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XBreadcrumb",
-      () => import("../vue/x-breadcrumb.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XTabGroup",
-      () => import("../vue/x-tab-group.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XTabPanel",
-      () => import("../vue/x-tab-panel.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XForm",
-      () => import("../vue/form/x-form.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XTextField",
-      () => import("../vue/form/x-text-field.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XFileInput",
-      () => import("../vue/form/x-file-input.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XCheckbox",
-      () => import("../vue/form/x-checkbox.vue"),
-    );
-    registerAsyncComponent(
-      app,
-      "XSelect",
-      () => import("../vue/form/x-select.vue"),
-    );
+	loadDesignSystem(app: App): void {
+		const vuetify = createVuetify({
+			components,
+			directives,
+			icons: {
+				defaultSet: 'mdi',
+				aliases,
+				sets: {
+					mdi,
+				},
+			},
+			theme: {
+				themes: {
+					light: {
+						dark: false,
+						colors: {
+							background: '#FFFFFF',
+							primary: blue.darken4,
+							secondary: blueGrey.darken4,
+						},
+					},
+				},
+			},
+		})
+		app.use(vuetify)
 
-    // Vuetify fallbacks
-    registerAsyncComponent(
-      app,
-      "XTree",
-      () => import("../vue/vuetify/x-tree.vue"),
-    );
-  }
+		// Custom wrapped components
+		registerAsyncComponent(app, 'XLoad', () => import('../vue/x-load.vue'))
+		registerAsyncComponent(app, 'XBtn', () => import('../vue/x-btn.vue'))
+		registerAsyncComponent(app, 'XImg', () => import('../vue/x-img.vue'))
+		registerAsyncComponent(app, 'XAvatar', () => import('../vue/x-avatar.vue'))
+		registerAsyncComponent(
+			app,
+			'XDivider',
+			() => import('../vue/x-divider.vue'),
+		)
+		registerAsyncComponent(app, 'XAlert', () => import('../vue/x-alert.vue'))
+		registerAsyncComponent(app, 'XDialog', () => import('../vue/x-dialog.vue'))
+		registerAsyncComponent(app, 'XMenu', () => import('../vue/x-menu.vue'))
+		registerAsyncComponent(
+			app,
+			'XMenuItem',
+			() => import('../vue/x-menu-item.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XMenuLabel',
+			() => import('../vue/x-menu-label.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XBreadcrumb',
+			() => import('../vue/x-breadcrumb.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XTabGroup',
+			() => import('../vue/x-tab-group.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XTabPanel',
+			() => import('../vue/x-tab-panel.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XForm',
+			() => import('../vue/form/x-form.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XTextField',
+			() => import('../vue/form/x-text-field.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XFileInput',
+			() => import('../vue/form/x-file-input.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XCheckbox',
+			() => import('../vue/form/x-checkbox.vue'),
+		)
+		registerAsyncComponent(
+			app,
+			'XSelect',
+			() => import('../vue/form/x-select.vue'),
+		)
+
+		// Vuetify fallbacks
+		registerAsyncComponent(
+			app,
+			'XTree',
+			() => import('../vue/vuetify/x-tree.vue'),
+		)
+	}
 }

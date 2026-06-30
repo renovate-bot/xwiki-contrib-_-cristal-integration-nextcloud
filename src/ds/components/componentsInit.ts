@@ -18,15 +18,16 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-import { NextcloudDesignSystemLoader } from "./nextcloudDesignSystemLoader";
-import type { DesignSystemLoader } from "@xwiki/platform-api";
-import type { Container } from "inversify";
+import type { DesignSystemLoader } from '@xwiki/platform-api'
+import type { Container } from 'inversify'
+
+import { NextcloudDesignSystemLoader } from './nextcloudDesignSystemLoader.ts'
 
 export default class ComponentInit {
-  constructor(container: Container) {
-    container
-      .bind<DesignSystemLoader>("DesignSystemLoader")
-      .to(NextcloudDesignSystemLoader)
-      .whenNamed("nextcloud");
-  }
+	constructor(container: Container) {
+		container
+			.bind<DesignSystemLoader>('DesignSystemLoader')
+			.to(NextcloudDesignSystemLoader)
+			.whenNamed('nextcloud')
+	}
 }

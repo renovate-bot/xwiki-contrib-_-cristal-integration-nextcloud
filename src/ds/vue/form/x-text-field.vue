@@ -18,27 +18,27 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import NcTextField from "@nextcloud/vue/components/NcTextField";
-import type { TextFieldProps } from "@xwiki/platform-dsapi";
+import type { TextFieldProps } from '@xwiki/platform-dsapi'
 
-defineProps<TextFieldProps>();
-const input = defineModel<string>();
+import NcTextField from '@nextcloud/vue/components/NcTextField'
+
+const input = defineModel<string>()
+defineProps<TextFieldProps>()
 </script>
 
 <template>
-  <nc-text-field
-    v-model="input"
-    :label="label"
-    :autofocus="autofocus"
-    :helper-text="help"
-    :readonly="readonly"
-    :required="required"
-    :type="type ?? 'text'"
-  >
-    <template v-if="$slots.default" #icon>
-      <slot name="default" />
-    </template>
-  </nc-text-field>
+	<NcTextField
+		v-model="input"
+		:label="label"
+		:autofocus="autofocus"
+		:helperText="help"
+		:readonly="readonly"
+		:required="required"
+		:type="type ?? 'text'">
+		<template v-if="$slots.default" #icon>
+			<slot name="default" />
+		</template>
+	</NcTextField>
 </template>
 
 <style scoped>

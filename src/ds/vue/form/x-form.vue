@@ -18,31 +18,31 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Ref } from "vue";
+import type { Ref } from 'vue'
 
-const form: Ref<HTMLFormElement | undefined> = ref(undefined);
-const emits = defineEmits(["formSubmit"]);
+import { ref } from 'vue'
 
+const emits = defineEmits(['formSubmit'])
+const form: Ref<HTMLFormElement | undefined> = ref(undefined)
 defineExpose({
-  reset,
-});
+	reset,
+})
 
 async function reset() {
-  form.value?.reset();
+	form.value?.reset()
 }
 
 function submit() {
-  if (form.value?.checkValidity()) {
-    emits("formSubmit");
-  }
+	if (form.value?.checkValidity()) {
+		emits('formSubmit')
+	}
 }
 </script>
 
 <template>
-  <form ref="form" @submit.prevent="submit">
-    <slot></slot>
-  </form>
+	<form ref="form" @submit.prevent="submit">
+		<slot />
+	</form>
 </template>
 
 <style scoped>

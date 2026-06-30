@@ -18,90 +18,87 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-import { inject, injectable } from "inversify";
-import type { CristalApp } from "@xwiki/cristal-api";
+import type { CristalApp } from '@xwiki/cristal-api'
 import type {
-  AuthenticationManager,
-  UserDetails,
-} from "@xwiki/cristal-authentication-api";
-import type { Container } from "inversify";
+	AuthenticationManager,
+	UserDetails,
+} from '@xwiki/cristal-authentication-api'
+import type { Container } from 'inversify'
+
+import { inject, injectable } from 'inversify'
 
 /**
  * Custom authentication manager to handle authentication through Nextcloud.
  */
 @injectable()
 class NextcloudAuthenticationManager implements AuthenticationManager {
-  private userDetails: UserDetails | undefined = undefined;
-  constructor(@inject("CristalApp") private readonly cristalApp: CristalApp) {}
+	private userDetails: UserDetails | undefined = undefined
+	constructor(@inject('CristalApp') private readonly cristalApp: CristalApp) {}
 
-  async start(): Promise<void> {
-    const loginUrl = new URL(
-      `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`,
-    );
-    loginUrl.searchParams.set("redirect_url", window.location.href);
-    window.location.href = loginUrl.toString();
-  }
+	async start(): Promise<void> {
+		const loginUrl = new URL(`${this.cristalApp.getWikiConfig().baseURL}/index.php/login`)
+		loginUrl.searchParams.set('redirect_url', window.location.href)
+		window.location.href = loginUrl.toString()
+	}
 
-  async callback(): Promise<void> {
-    console.warn("No callback registered for basic XWiki auth.");
-  }
+	async callback(): Promise<void> {
+		// No callback registered for basic XWiki auth.
+	}
 
-  async getUserDetails(): Promise<UserDetails> {
-    if (!this.userDetails) {
-      const loginRequest = await fetch(
-        `${this.cristalApp.getWikiConfig().baseURL}/index.php/login`,
-      );
-      const userId = loginRequest.headers.get("X-User-Id")!;
+	async getUserDetails(): Promise<UserDetails> {
+		if (!this.userDetails) {
+			const loginRequest = await fetch(`${this.cristalApp.getWikiConfig().baseURL}/index.php/login`)
+			const userId = loginRequest.headers.get('X-User-Id')!
 
-      const ocsRequest = await fetch(
-        `${this.cristalApp.getWikiConfig().baseURL}/ocs/v1.php/cloud/users/${userId}`,
-        {
-          headers: {
-            Accept: "application/json",
-            "OCS-APIRequest": "true",
-          },
-        },
-      );
-      const jsonResponse: { ocs: { data: { displayname: string } } } =
-        await ocsRequest.json();
+			const ocsRequest = await fetch(
+				`${this.cristalApp.getWikiConfig().baseURL}/ocs/v1.php/cloud/users/${userId}`,
+				{
+					headers: {
+						Accept: 'application/json',
+						'OCS-APIRequest': 'true',
+					},
+				},
+			)
+			const jsonResponse: { ocs: { data: { displayname: string } } }
+				= await ocsRequest.json()
 
-      const baseUrl = this.cristalApp.getWikiConfig().baseURL;
-      this.userDetails = {
-        profile: `${baseUrl}/u/${userId}`,
-        username: userId,
-        name: jsonResponse.ocs.data.displayname,
-        avatar: `${baseUrl}/avatar/${userId}/64`, // We want the 64x64 avatar.
-      };
-    }
-    return this.userDetails;
-  }
+			const baseUrl = this.cristalApp.getWikiConfig().baseURL
+			this.userDetails = {
+				profile: `${baseUrl}/u/${userId}`,
+				username: userId,
+				name: jsonResponse.ocs.data.displayname,
+				avatar: `${baseUrl}/avatar/${userId}/64`, // We want the 64x64 avatar.
+			}
+		}
+		return this.userDetails
+	}
 
-  async logout(): Promise<void> {
-    await fetch(`${this.cristalApp.getWikiConfig().baseURL}/index.php/logout`, {
-      headers: { "OCS-APIRequest": "true" },
-    });
-  }
+	async logout(): Promise<void> {
+		await fetch(`${this.cristalApp.getWikiConfig().baseURL}/index.php/logout`, {
+			headers: { 'OCS-APIRequest': 'true' },
+		})
+	}
 
-  async getAuthorizationHeader(): Promise<string | undefined> {
-    return undefined;
-  }
+	async getAuthorizationHeader(): Promise<string | undefined> {
+		return undefined
+	}
 
-  async isAuthenticated(): Promise<boolean> {
-    // The user needs to be logged-in to open the Cristal app.
-    return true;
-  }
+	async isAuthenticated(): Promise<boolean> {
+		// The user needs to be logged-in to open the Cristal app.
+		return true
+	}
 
-  getUserId(): string | undefined {
-    return document.getElementsByTagName("head")[0]?.getAttribute("data-user");
-  }
+	getUserId(): string | undefined {
+		return document.getElementsByTagName('head')[0]?.getAttribute('data-user')
+	}
 }
 
 export class ComponentInit {
-  constructor(container: Container) {
-    container
-      .bind<AuthenticationManager>("AuthenticationManager")
-      .to(NextcloudAuthenticationManager)
-      .inSingletonScope()
-      .whenNamed("Nextcloud");
-  }
+	constructor(container: Container) {
+		container
+			.bind<AuthenticationManager>('AuthenticationManager')
+			.to(NextcloudAuthenticationManager)
+			.inSingletonScope()
+			.whenNamed('Nextcloud')
+	}
 }

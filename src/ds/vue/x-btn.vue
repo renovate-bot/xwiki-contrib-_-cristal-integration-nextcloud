@@ -18,16 +18,18 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcButton from "@nextcloud/vue/components/NcButton";
-import { computed } from "vue";
-import type { BtnProps } from "@xwiki/platform-dsapi";
+import type { BtnProps } from '@xwiki/platform-dsapi'
 
-const { variant } = defineProps<BtnProps>();
+import { computed } from 'vue'
+import NcButton from '@nextcloud/vue/components/NcButton'
 
-const ncVariant = computed(() => (variant == "text" ? "tertiary" : variant));
+const { variant } = defineProps<BtnProps>()
+
+const ncVariant = computed(() => (variant === 'text' ? 'tertiary' : variant))
 </script>
+
 <template>
-  <nc-button :variant="ncVariant">
-    <slot />
-  </nc-button>
+	<NcButton :variant="ncVariant">
+		<slot />
+	</NcButton>
 </template>

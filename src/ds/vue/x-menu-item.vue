@@ -18,25 +18,29 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcListItem from "@nextcloud/vue/components/NcListItem";
-import type { MenuItemProps } from "@xwiki/platform-dsapi";
+import type { MenuItemProps } from '@xwiki/platform-dsapi'
 
-defineProps<MenuItemProps>();
+import NcListItem from '@nextcloud/vue/components/NcListItem'
+
+defineProps<MenuItemProps>()
 </script>
 
 <template>
-  <span class="item-wrapper">
-    <nc-list-item v-if="disabled" @click.capture.stop.prevent compact disabled>
-      <template #name>
-        <slot name="default" />
-      </template>
-    </nc-list-item>
-    <nc-list-item v-else @click.prevent compact>
-      <template #name>
-        <slot name="default" />
-      </template>
-    </nc-list-item>
-  </span>
+	<span class="item-wrapper">
+		<NcListItem v-if="disabled"
+			compact
+			disabled
+			@click.capture.stop.prevent>
+			<template #name>
+				<slot name="default" />
+			</template>
+		</NcListItem>
+		<NcListItem v-else compact @click.prevent>
+			<template #name>
+				<slot name="default" />
+			</template>
+		</NcListItem>
+	</span>
 </template>
 
 <style scoped>

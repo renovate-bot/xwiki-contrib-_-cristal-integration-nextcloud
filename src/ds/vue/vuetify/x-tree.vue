@@ -18,67 +18,64 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts" generic="T extends DisplayableTreeNode">
-import { ref, watch } from "vue";
-import { VTreeview } from "vuetify/components/VTreeview";
-import type { DisplayableTreeNode, TreeProps } from "@xwiki/platform-dsapi";
-import type { Ref } from "vue";
+import type { DisplayableTreeNode, TreeProps } from '@xwiki/platform-dsapi'
+import type { Ref } from 'vue'
 
-const props = defineProps<TreeProps<T>>();
-const opened = defineModel("opened", { default: [], type: Array<string> });
-const activated = defineModel<string | undefined>("activated");
+import { ref, watch } from 'vue'
+import { VTreeview } from 'vuetify/components/VTreeview'
 
-const activatedNodes: Ref<Array<string>> = ref([]);
+const opened = defineModel('opened', { default: [], type: Array<string> })
+const activated = defineModel<string | undefined>('activated')
+const props = defineProps<TreeProps<T>>()
+const activatedNodes: Ref<Array<string>> = ref([])
 
-watch(activated, resetActivated, { immediate: true });
+watch(activated, resetActivated, { immediate: true })
 
 function resetActivated() {
-  // Clicking on a node would activate it and this can't be disabled easily.
-  // With this listener, we ensure that only the node we want stays active.
-  activatedNodes.value = activated.value ? [activated.value] : [];
+	// Clicking on a node would activate it and this can't be disabled easily.
+	// With this listener, we ensure that only the node we want stays active.
+	activatedNodes.value = activated.value ? [activated.value] : []
 }
 
 function updateActivated(newActivatedNode: DisplayableTreeNode) {
-  if (newActivatedNode.activatable) {
-    activated.value = newActivatedNode.id;
-  }
+	if (newActivatedNode.activatable) {
+		activated.value = newActivatedNode.id
+	}
 }
 
 async function lazyLoadChildrenWrapper(node: unknown) {
-  // We need this wrapper because our props are more specific than Vuetify's.
-  await props.lazyLoadChildren!(node as T);
+	// We need this wrapper because our props are more specific than Vuetify's.
+	await props.lazyLoadChildren!(node as T)
 }
 </script>
 
 <template>
-  <v-treeview
-    density="compact"
-    :activated="activatedNodes"
-    :items="showRootNode ? [rootNode] : rootNode.children"
-    :load-children="lazyLoadChildren ? lazyLoadChildrenWrapper : undefined"
-    activatable
-    active-strategy="independent"
-    item-value="id"
-    v-model:opened="opened as string[]"
-    @update:opened="($event: string[]) => (opened = $event)"
-    @update:activated="resetActivated"
-  >
-    <template #title="{ item }">
-      <a
-        v-if="nodeClickAction"
-        :href="item.url"
-        @click.prevent="
-          async () => {
-            updateActivated(item);
-            await nodeClickAction!(item as T);
-          }
-        "
-        >{{ item.label }}</a
-      >
-      <a v-else :href="item.url" @click="updateActivated(item)">{{
-        item.label
-      }}</a>
-    </template>
-  </v-treeview>
+	<VTreeview
+		v-model:opened="opened as string[]"
+		density="compact"
+		:activated="activatedNodes"
+		:items="showRootNode ? [rootNode] : rootNode.children"
+		:loadChildren="lazyLoadChildren ? lazyLoadChildrenWrapper : undefined"
+		activatable
+		activeStrategy="independent"
+		itemValue="id"
+		@update:opened="($event: string[]) => (opened = $event)"
+		@update:activated="resetActivated">
+		<template #title="{ item }">
+			<a
+				v-if="nodeClickAction"
+				:href="item.url"
+				@click.prevent="
+					async () => {
+						updateActivated(item);
+						await nodeClickAction!(item as T);
+					}
+				">{{ item.label }}</a>
+			<a v-else :href="item.url" @click="updateActivated(item)">{{
+				item.label
+			}}</a>
+		</template>
+	</VTreeview>
 </template>
 
 <style scoped>
@@ -86,6 +83,7 @@ async function lazyLoadChildrenWrapper(node: unknown) {
 .v-list {
   background: none;
 }
+
 :deep(a) {
   text-decoration: none;
   color: var(--cr-base-text-color);

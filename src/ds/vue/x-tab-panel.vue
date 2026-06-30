@@ -18,21 +18,21 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import NcAppSidebarTab from "@nextcloud/vue/components/NcAppSidebarTab";
-import { useId } from "vue";
-import type { TabPanelProps } from "@xwiki/platform-dsapi";
+import type { TabPanelProps } from '@xwiki/platform-dsapi'
 
-defineProps<TabPanelProps>();
+import { useId } from 'vue'
+import NcAppSidebarTab from '@nextcloud/vue/components/NcAppSidebarTab'
 
-const tabUid = useId();
+defineProps<TabPanelProps>()
+
+const tabUid = useId()
 </script>
 
 <template>
-  <nc-app-sidebar-tab
-    :id="tabUid"
-    :name="tabId.charAt(0).toUpperCase() + tabId.slice(1)"
-    :value="tabId"
-  >
-    <slot></slot>
-  </nc-app-sidebar-tab>
+	<NcAppSidebarTab
+		:id="tabUid"
+		:name="tabId.charAt(0).toUpperCase() + tabId.slice(1)"
+		:value="tabId">
+		<slot />
+	</NcAppSidebarTab>
 </template>

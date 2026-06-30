@@ -66,7 +66,7 @@ article#content .editor div[contenteditable="true"] {
 article#content .editor .bn-side-menu {
   /* We adjust the positioning to take into account Nextcloud's padding. */
   position: relative;
-  left: -20px;
+  inset-inline-start: -20px;
   top: -4px;
 }
 

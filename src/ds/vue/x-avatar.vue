@@ -18,13 +18,15 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcAvatar from "@nextcloud/vue/components/NcAvatar";
-import type { AvatarProps } from "@xwiki/platform-dsapi";
+import type { AvatarProps } from '@xwiki/platform-dsapi'
 
-defineProps<AvatarProps>();
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
+
+defineProps<AvatarProps>()
 </script>
+
 <template>
-  <nc-avatar :size="size" :url="image" :display-name="name"></nc-avatar>
+	<NcAvatar :size="size" :url="image" :displayName="name" />
 </template>
 
 <style scoped>

@@ -18,32 +18,33 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-import { injectable } from "inversify";
-import { createRouter, createWebHashHistory } from "vue-router";
-import type { RouterFactory } from "@xwiki/cristal-lib";
-import type { Container } from "inversify";
-import type { RouteRecordRaw, Router } from "vue-router";
+import type { RouterFactory } from '@xwiki/cristal-lib'
+import type { Container } from 'inversify'
+import type { Router, RouteRecordRaw } from 'vue-router'
+
+import { injectable } from 'inversify'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 /**
  * Custom router factory for Nextcloud Integration.
  */
 @injectable()
 class NextcloudRouterFactory implements RouterFactory {
-  initializeRouter(routes: RouteRecordRaw[]): Router {
-    const router = createRouter({
-      history: createWebHashHistory("/apps/cristal"),
-      routes,
-    });
+	initializeRouter(routes: RouteRecordRaw[]): Router {
+		const router = createRouter({
+			history: createWebHashHistory('/apps/cristal'),
+			routes,
+		})
 
-    return router;
-  }
+		return router
+	}
 }
 
 export class ComponentInit {
-  constructor(container: Container) {
-    container
-      .bind<RouterFactory>("RouterFactory")
-      .to(NextcloudRouterFactory)
-      .inSingletonScope();
-  }
+	constructor(container: Container) {
+		container
+			.bind<RouterFactory>('RouterFactory')
+			.to(NextcloudRouterFactory)
+			.inSingletonScope()
+	}
 }

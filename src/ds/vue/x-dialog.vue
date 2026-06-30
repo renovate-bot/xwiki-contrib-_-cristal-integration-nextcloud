@@ -18,37 +18,37 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script lang="ts" setup>
-import NcDialog from "@nextcloud/vue/components/NcDialog";
+import NcDialog from '@nextcloud/vue/components/NcDialog'
+
+const open = defineModel<boolean>()
 
 defineProps<{
-  title: string;
-  width: string | number | undefined;
-}>();
+	title: string
+	width: string | number | undefined
+}>()
 
 function click() {
-  open.value = true;
+	open.value = true
 }
 
-const open = defineModel<boolean>();
 </script>
 
 <template>
-  <span @click="click">
-    <slot name="activator" />
-  </span>
-  <nc-dialog
-    container="#view"
-    :name="title"
-    v-model:open="open"
-    close-on-click-outside
-  >
-    <template #default>
-      <slot name="default" />
-    </template>
-    <template #actions>
-      <slot name="footer" />
-    </template>
-  </nc-dialog>
+	<span @click="click">
+		<slot name="activator" />
+	</span>
+	<NcDialog
+		v-model:open="open"
+		container="#view"
+		:name="title"
+		closeOnClickOutside>
+		<template #default>
+			<slot name="default" />
+		</template>
+		<template #actions>
+			<slot name="footer" />
+		</template>
+	</NcDialog>
 </template>
 
 <style scoped>

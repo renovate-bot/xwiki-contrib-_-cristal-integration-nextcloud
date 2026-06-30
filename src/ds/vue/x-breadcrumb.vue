@@ -18,20 +18,20 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import NcBreadcrumb from "@nextcloud/vue/components/NcBreadcrumb";
-import NcBreadcrumbs from "@nextcloud/vue/components/NcBreadcrumbs";
-import type { BreadcrumbProps } from "@xwiki/platform-dsapi";
+import type { BreadcrumbProps } from '@xwiki/platform-dsapi'
 
-defineProps<BreadcrumbProps>();
+import NcBreadcrumb from '@nextcloud/vue/components/NcBreadcrumb'
+import NcBreadcrumbs from '@nextcloud/vue/components/NcBreadcrumbs'
+
+defineProps<BreadcrumbProps>()
 </script>
 
 <template>
-  <nc-breadcrumbs root-icon="">
-    <nc-breadcrumb
-      v-for="(item, i) in items"
-      :key="i"
-      :name="item.label"
-      :href="item.url"
-    ></nc-breadcrumb>
-  </nc-breadcrumbs>
+	<NcBreadcrumbs rootIcon="">
+		<NcBreadcrumb
+			v-for="(item, i) in items"
+			:key="i"
+			:name="item.label"
+			:href="item.url" />
+	</NcBreadcrumbs>
 </template>

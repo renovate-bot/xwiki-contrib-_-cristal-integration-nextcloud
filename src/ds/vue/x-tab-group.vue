@@ -18,23 +18,18 @@
   02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 <script setup lang="ts">
-import NcAppSidebar from "@nextcloud/vue/components/NcAppSidebar";
-import NcAppSidebarTab from "@nextcloud/vue/components/NcAppSidebarTab";
-import { ref } from "vue";
-import type { Ref } from "vue";
-const tab: Ref<unknown> = ref();
-
-const emits = defineEmits(["tab-change"]);
+import NcAppSidebar from '@nextcloud/vue/components/NcAppSidebar'
+const emits = defineEmits(['tabChange'])
 
 function change(event: string) {
-  emits("tab-change", event);
+	emits('tabChange', event)
 }
 </script>
 
 <template>
-  <nc-app-sidebar force-tabs no-toggle @update:active="change">
-    <slot name="panels"></slot>
-  </nc-app-sidebar>
+	<NcAppSidebar forceTabs noToggle @update:active="change">
+		<slot name="panels" />
+	</NcAppSidebar>
 </template>
 
 <style scoped>
