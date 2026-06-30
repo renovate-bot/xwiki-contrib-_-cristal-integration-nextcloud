@@ -17,10 +17,12 @@ export default defineConfig({
   },
   build: {
     outDir: ".",
+    emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, "src/main.js"),
+      entry: resolve(__dirname, "src/main.ts"),
       name: "cristal",
       fileName: () => "js/cristal-main.js",
+      formats: ['es'],
     },
     
     rollupOptions: {
