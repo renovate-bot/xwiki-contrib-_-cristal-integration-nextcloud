@@ -47,7 +47,7 @@ You can also fill the [Feedback survey](https://cryptpad.fr/form/#/2/form/view/5
 	<repository>https://github.com/xwiki-contrib/cristal-integration-nextcloud</repository>
 	<screenshot>https://raw.githubusercontent.com/xwiki-contrib/cristal-integration-nextcloud/main/doc/cristal.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="30" max-version="32"/>
+		<nextcloud min-version="30" max-version="34"/>
 	</dependencies>
 	<navigations>
 		<navigation>
