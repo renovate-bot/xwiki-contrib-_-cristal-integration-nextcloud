@@ -27,27 +27,65 @@ defineProps<TextFieldProps>()
 </script>
 
 <template>
+	<!--
+	  NcTextField is a text input, and its only slot for custom content is a
+	  leading slot sized for a single icon. When a caller slots arbitrary
+	  content (e.g. a read-only location breadcrumb), render a field-like,
+	  non-interactive container that matches the Nextcloud input look instead
+	  of forcing the content through the text input.
+	-->
+	<div v-if="$slots.default" class="x-text-field-display">
+		<span class="x-text-field-display__label">{{ label }}</span>
+		<div class="x-text-field-display__content">
+			<slot name="default" />
+		</div>
+		<span v-if="help" class="x-text-field-display__help">{{ help }}</span>
+	</div>
 	<NcTextField
+		v-else
 		v-model="input"
 		:label="label"
 		:autofocus="autofocus"
 		:helperText="help"
 		:readonly="readonly"
 		:required="required"
-		:type="type ?? 'text'">
-		<template v-if="$slots.default" #icon>
-			<slot name="default" />
-		</template>
-	</NcTextField>
+		:type="type ?? 'text'" />
 </template>
 
 <style scoped>
-.input-field--leading-icon {
-  --input-padding-start: var(--border-radius-element);
+.x-text-field-display {
+  width: 100%;
+  margin-block-start: 6px;
 }
 
-:deep(.input-field__icon) {
-  width: unset;
+.x-text-field-display__label {
+  display: block;
+  margin-block-end: 2px;
+  color: var(--color-main-text);
+  font-size: 13px;
+  font-weight: var(--font-weight-element, 500);
 }
 
+.x-text-field-display__content {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--default-clickable-area);
+  padding-inline: var(--border-radius-element);
+  /*
+   * Slotted content (e.g. a Nextcloud breadcrumb) is a tall standalone widget;
+   * keep the field one line high and let its own vertical padding clip.
+   */
+  overflow: hidden;
+  border: 2px solid var(--color-border-maxcontrast);
+  border-radius: var(--border-radius-element);
+}
+
+.x-text-field-display__help {
+  display: block;
+  padding-block: 4px;
+  padding-inline: var(--border-radius-element);
+  color: var(--color-text-maxcontrast);
+  font-size: 13px;
+}
 </style>
