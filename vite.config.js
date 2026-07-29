@@ -4,6 +4,15 @@ import { resolve } from "path";
 
 export default defineConfig({
   plugins: [vue()],
+  oxc: {
+    // Some @xwiki/platform-* packages are published as raw TypeScript (their
+    // "exports.import" points at src/) and use inversify's legacy decorators.
+    // The experimentalDecorators of tsconfig.json only covers this project's
+    // own sources, so the lowering has to be enabled here for the dependencies
+    // too, otherwise their "@" decorators are emitted as-is and the bundle is
+    // not valid JavaScript.
+    decorator: { legacy: true },
+  },
   define: {
     'process.env.NODE_ENV': JSON.stringify("production"),
   },
