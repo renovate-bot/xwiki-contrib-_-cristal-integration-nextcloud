@@ -99,8 +99,8 @@ importers:
         specifier: 5.1.0
         version: 5.1.0(@vue/compiler-sfc@3.5.39)(esbuild@0.27.7)(pinia@3.0.4(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2)))(rolldown@1.1.3)(rollup@4.62.2)(vite@8.1.1(esbuild@0.27.7)(yaml@2.9.0))(vue@3.5.39(typescript@5.5.2))
       vuetify:
-        specifier: 3.12.8
-        version: 3.12.8(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2))
+        specifier: 4.1.5
+        version: 4.1.5(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2))
     devDependencies:
       '@nextcloud/browserslist-config':
         specifier: 3.1.2
@@ -4193,8 +4193,8 @@ packages:
       typescript:
         optional: true
 
-  vuetify@3.12.8:
-    resolution: {integrity: sha512-gvmOWeLd6CG7LVh2Qonft5YrIb7MpbKZglRjg0ItEloSbu6hfUII2RZmRSVxGKYdiXTf7J1hI3BRSHr8J9LkxA==}
+  vuetify@4.0.3:
+    resolution: {integrity: sha512-RjvmvXuq0omR4h4BQGNzkzl7/CKml+Q82JUu3AvecuX43V7eSxk35GC/TsUoKMWJVgXPLwGh5dpQnH1bG1D3qg==}
     peerDependencies:
       typescript: '>=4.7'
       vite-plugin-vuetify: '>=2.1.0'
@@ -4208,8 +4208,8 @@ packages:
       webpack-plugin-vuetify:
         optional: true
 
-  vuetify@4.0.3:
-    resolution: {integrity: sha512-RjvmvXuq0omR4h4BQGNzkzl7/CKml+Q82JUu3AvecuX43V7eSxk35GC/TsUoKMWJVgXPLwGh5dpQnH1bG1D3qg==}
+  vuetify@4.1.5:
+    resolution: {integrity: sha512-cR3XMzWbVll9wSdarhH7asT27zm23rMNM5dQ9pMGwTPGwEm0km8mY6ERJAGHIa/nMw0pYXWHjf1O9qJ/0PtZCQ==}
     peerDependencies:
       typescript: '>=4.7'
       vite-plugin-vuetify: '>=2.1.0'
@@ -9537,13 +9537,13 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.2
 
-  vuetify@3.12.8(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2)):
+  vuetify@4.0.3(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2)):
     dependencies:
       vue: 3.5.39(typescript@5.5.2)
     optionalDependencies:
       typescript: 5.5.2
 
-  vuetify@4.0.3(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2)):
+  vuetify@4.1.5(typescript@5.5.2)(vue@3.5.39(typescript@5.5.2)):
     dependencies:
       vue: 3.5.39(typescript@5.5.2)
     optionalDependencies:
