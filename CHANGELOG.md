@@ -47,9 +47,3 @@ Upgrade to Cristal 1.0.0 and implementation of the Nextcloud Design System.
 ## [1.0.0]
 
 First stable release, includes Cristal 0.25.0.
-
-## [Unreleased]
-
-### Added
-
-- First release
