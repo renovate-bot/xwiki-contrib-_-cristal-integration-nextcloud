@@ -75,7 +75,7 @@ jobs:
         with:
           files: cristal.tar.gz
           draft: false
-          prerelease: true
+          prerelease: ${{ steps.version.outputs.IS_NIGHTLY }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
