@@ -39,7 +39,7 @@
     "@xwiki/platform-model-remote-url-api": "18.8.0",
     "@xwiki/platform-uniast-api": "18.8.0",
     "@xwiki/platform-uniast-markdown": "18.8.0",
-    "fast-xml-parser": "5.11.1",
+    "fast-xml-parser": "5.11.2",
     "inversify": "8.2.3",
     "pinia": "4.0.3",
     "vue-i18n": "11.4.10",

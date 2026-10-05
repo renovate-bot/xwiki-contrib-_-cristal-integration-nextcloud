@@ -84,8 +84,8 @@ importers:
         specifier: 18.8.0
         version: 18.8.0(inversify@8.2.3(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)(supports-color@10.2.2)(vue-router@5.3.0(@vue/compiler-sfc@3.5.42)(esbuild@0.27.7)(pinia@4.0.3(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.5.42(typescript@6.0.3)))(rolldown@1.2.6)(rollup@4.62.2)(vite@8.2.2(esbuild@0.27.7)(yaml@2.9.0))(vue@3.5.42(typescript@6.0.3)))(vue@3.5.42(typescript@6.0.3))
       fast-xml-parser:
-        specifier: 5.11.1
-        version: 5.11.1
+        specifier: 5.11.2
+        version: 5.11.2
       inversify:
         specifier: 8.2.3
         version: 8.2.3(reflect-metadata@0.2.2)
@@ -747,8 +747,8 @@ packages:
   '@nodable/entities@2.2.0':
     resolution: {integrity: sha512-9uGyhaQavEUMC8AIddIjau4NsnsXhou+j5sBAGojCM1oxmQpVKTWR/9JxABD6UAv12vpIms55fPZKFQEhG6uBg==}
 
-  '@nodable/entities@3.0.0':
-    resolution: {integrity: sha512-8L9xFeTYKhm49xfIypoe2W5wV1m/3Z58kT+7kR9A8OyFxcPduI4VmxaUMQyKYrRjUoLLSXv6EKKID5Tvj9cUVw==}
+  '@nodable/entities@3.1.0':
+    resolution: {integrity: sha512-LsS/DjHr+uDM647Gru/cA8+J3a3HfhttwCKLyuoyN7yXTFCxKBtSgMQBvrW9yNPa2/zDRUNuGPaH5QUFoa4arQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2596,8 +2596,8 @@ packages:
   fast-xml-builder@1.2.0:
     resolution: {integrity: sha512-00aAWieqff+ZJhsXA4g1g7M8k+7AYoMUUHF+/zFb5U6Uv/P0Vl4QZo84/IcufzYalLuEj9928bXN9PbbFzMF0Q==}
 
-  fast-xml-parser@5.11.1:
-    resolution: {integrity: sha512-TBw6K/fxoQGGjCmZDw9w/ZwP3uDcnTM4YH/g+PFRWr8sbe5idXtxNN6vITh4+1ruCZaho6uBFurElsA7F0zzgw==}
+  fast-xml-parser@5.11.2:
+    resolution: {integrity: sha512-R9iDuNrQYeQut46cn2r2wHKn4HYzVDvDm5J1wW+koZewykv0yuO2HChTYeZtrULyHIDM9cj9TUXloCsueCQUog==}
     hasBin: true
 
   fast-xml-parser@5.7.0:
@@ -4874,7 +4874,7 @@ snapshots:
       eslint-plugin-jsdoc: 63.0.10(eslint@10.9.1(supports-color@10.2.2))(supports-color@10.2.2)
       eslint-plugin-perfectionist: 5.9.1(eslint@10.9.1(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       eslint-plugin-vue: 10.9.2(@stylistic/eslint-plugin@5.10.0(eslint@10.9.1(supports-color@10.2.2)))(@typescript-eslint/parser@8.62.1(eslint@10.9.1(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.9.1(supports-color@10.2.2))(vue-eslint-parser@10.4.1(eslint@10.9.1(supports-color@10.2.2))(supports-color@10.2.2))
-      fast-xml-parser: 5.11.1
+      fast-xml-parser: 5.11.2
       globals: 17.7.0
       semver: 7.8.5
       sort-package-json: 4.0.0
@@ -5036,7 +5036,7 @@ snapshots:
 
   '@nodable/entities@2.2.0': {}
 
-  '@nodable/entities@3.0.0': {}
+  '@nodable/entities@3.1.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -7802,9 +7802,9 @@ snapshots:
       path-expression-matcher: 1.6.2
       xml-naming: 0.1.0
 
-  fast-xml-parser@5.11.1:
+  fast-xml-parser@5.11.2:
     dependencies:
-      '@nodable/entities': 3.0.0
+      '@nodable/entities': 3.1.0
       fast-xml-builder: 1.2.0
       is-unsafe: 2.0.2
       path-expression-matcher: 1.6.2
@@ -9608,7 +9608,7 @@ snapshots:
       base-64: 1.0.0
       byte-length: 1.0.2
       entities: 6.0.1
-      fast-xml-parser: 5.11.1
+      fast-xml-parser: 5.11.2
       hot-patcher: 2.0.1
       layerr: 3.0.0
       md5: 2.3.0
