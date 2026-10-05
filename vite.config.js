@@ -15,6 +15,10 @@ export default defineConfig({
   },
   define: {
     'process.env.NODE_ENV': JSON.stringify("production"),
+    // Library mode leaves process.env untouched, and @vuetify/v0 (pulled by
+    // vuetify) reads this flag without checking that process exists, which
+    // throws in the browser and prevents the app from starting.
+    'process.env.VITE_LOGGER_ENABLED': JSON.stringify("false"),
   },
   resolve: {
     alias: {
